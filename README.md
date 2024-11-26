@@ -6,12 +6,14 @@
 2. Создание базы данных
 После установки сервера базы данных выполните следующие действия:
 Подключитесь к серверу с помощью SQL Server Management Studio (SSMS) или другого клиента.
-Создайте новую базу данных. Выполните следующий SQL-запрос: "CREATE DATABASE KnapsackDB;"
-Выберите созданную базу данных для дальнейшей работы: "USE KnapsackDB;"
-3. Создание таблиц
+
+4. Создание базы данных и таблицы
 Выполните следующие SQL-запросы для создания необходимых таблиц:
+
 "CREATE DATABASE backpack;"
+
 "USE backpack;"
+
 "CREATE TABLE backpack_solving (
     Id INT PRIMARY KEY IDENTITY(1,1), -- Уникальный идентификатор с автоинкрементом
     Task_type NVARCHAR(255) NOT NULL, -- Тип задачи
@@ -20,17 +22,19 @@
     Answer INT NOT NULL, -- Ответ задачи
     Items NVARCHAR(MAX) NOT NULL, -- Список предметов в формате строки
     Date_time DATETIME NOT NULL -- Дата и время
-);"
+);".
 
 5. Настройка строки подключения в проекте
 В проекте откройте файл конфигурации (например, appsettings.json или web.config) и обновите строку подключения к базе данных:
 
 "ConnectionStrings": {
-    "KnapsackDBConnectionString": "Server=YOUR_SERVER_NAME;Database=KnapsackDB;User Id=YOUR_USERNAME;Password=YOUR_PASSWORD;"
+    "KnapsackDBConnectionString": "Server=your-server-name;Database=backpack;Trusted_Connection=True;TrustServerCertificate=True;"
 }
-Замените YOUR_SERVER_NAME, YOUR_USERNAME и YOUR_PASSWORD на соответствующие значения вашего сервера базы данных.
+
+Замените YOUR_SERVER_NAME на соответствующие значения вашего сервера базы данных.
 
 5. Инициализация базы данных данными (опционально)
+
 Если необходимо, добавьте начальные данные в таблицы:
 "INSERT INTO backpack_solving (Task_type, Backpack_weight, Number_of_items, Answer, Items, Date_time)
 VALUES 
